@@ -1,0 +1,43 @@
+name: Compilar APK Android
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener archivos del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar entorno Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar motor de App (Cordova)
+        run: npm install -g cordova
+
+      - name: Empaquetar y construir APK
+        run: |
+          cordova create app com.rutas.neomexmap NeoMexMapp
+          rm -rf app/www/*
+          cp index.html style.css script.js colonias.json app/www/
+          cd app
+          cordova platform add android
+          cordova build android
+
+      - name: Guardar APK como Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NeoMexMapp-Instalable
+          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          
