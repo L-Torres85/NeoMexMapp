@@ -1,0 +1,63 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background-color: #080808; color: #ffffff; height: 100vh; overflow: hidden; }
+
+.app-container { display: flex; flex-direction: column; height: 100vh; }
+
+/* Cabecera y Título */
+header { padding: 20px 15px 15px 15px; background: #111; border-bottom: 1px solid #00e5ff; box-shadow: 0 0 25px rgba(0, 229, 255, 0.2); z-index: 10; }
+h1 { font-size: 1.6rem; margin-bottom: 12px; color: #00e5ff; text-shadow: 0 0 12px rgba(0, 229, 255, 0.6); text-transform: uppercase; letter-spacing: 3px; text-align: center; }
+
+/* Casilla de búsqueda y Botón iluminado */
+.search-box { display: flex; gap: 8px; max-width: 500px; margin: 0 auto 15px auto; }
+input { flex: 1; padding: 8px 12px; background: rgba(0, 229, 255, 0.05); border: 2px solid #00e5ff; color: #fff; border-radius: 6px; outline: none; transition: 0.3s; font-size: 0.95rem; box-shadow: 0 0 10px rgba(0, 229, 255, 0.4); font-weight: bold; }
+input::placeholder { color: rgba(0, 229, 255, 0.6); font-weight: normal; }
+input:focus { background: rgba(0, 229, 255, 0.15); box-shadow: 0 0 20px rgba(0, 229, 255, 0.8); }
+
+#searchBtn { padding: 0 18px; background: #00e5ff; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; box-shadow: 0 0 15px rgba(0, 229, 255, 0.8); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+#searchBtn:active { transform: scale(0.95); box-shadow: 0 0 5px rgba(0, 229, 255, 0.8); }
+
+/* Controles de Filtros y Listas */
+.controls-container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.filter-row, .list-row { display: flex; gap: 8px; justify-content: center; }
+
+.btn-neon-outline { flex: 1; padding: 6px 0; background: transparent; color: #b026ff; border: 1px solid #b026ff; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+.btn-neon-outline.active { background: #b026ff; color: #fff; box-shadow: 0 0 12px rgba(176, 38, 255, 0.6); }
+
+.btn-neon-solid { flex: 1; padding: 8px 0; background: transparent; color: #39ff14; border: 1px solid #39ff14; border-radius: 4px; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 5px rgba(57, 255, 20, 0.1); }
+.btn-neon-solid:active { background: #39ff14; color: #000; box-shadow: 0 0 15px rgba(57, 255, 20, 0.7); }
+
+/* Contenedor de Resultados */
+.results-container { flex: 1; background: #0a0a0a; overflow-y: auto; padding: 20px 15px; }
+.results-container::-webkit-scrollbar { width: 4px; }
+.results-container::-webkit-scrollbar-thumb { background: #00e5ff; border-radius: 2px; }
+
+/* Tarjetas de Búsqueda Principal */
+.colonia-card { background: #161616; padding: 15px; margin-bottom: 12px; border-left: 3px solid #00e5ff; border-radius: 6px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.colonia-card h3 { color: #ffffff; font-size: 1.1rem; margin-bottom: 5px; }
+.colonia-card p { font-size: 0.85rem; color: #999; margin-bottom: 3px; }
+
+/* Tarjeta de Código Postal (Neón transparente) */
+.cp-card { background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 6px; padding: 14px 15px; margin-bottom: 5px; color: #00e5ff; font-size: 1.1rem; font-weight: bold; cursor: pointer; max-width: 500px; margin-left: auto; margin-right: auto; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease; box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); }
+.cp-card:active { transform: scale(0.98); background: rgba(0, 229, 255, 0.15); box-shadow: 0 0 15px rgba(0, 229, 255, 0.3); }
+
+/* Lista desplegable de colonias */
+.colonias-dropdown { display: none; max-width: 500px; margin: 0 auto 15px auto; background: #0f0f0f; border-left: 2px solid rgba(0, 229, 255, 0.3); border-right: 1px solid #222; border-bottom: 1px solid #222; border-radius: 0 0 6px 6px; padding: 10px; box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5); }
+.colonias-dropdown p { color: #ccc; font-size: 0.9rem; padding: 8px 10px; border-bottom: 1px solid #1a1a1a; margin: 0; }
+.colonias-dropdown p:last-child { border-bottom: none; }
+
+/* Lista sencilla para botón "Colonias" */
+.list-item { background: #111; border: 1px solid #222; border-radius: 4px; padding: 10px 15px; margin-bottom: 8px; color: #ccc; font-size: 0.9rem; max-width: 500px; margin-left: auto; margin-right: auto; text-align: center; border-left: 2px solid #39ff14; }
+
+/* Icono Pin Neón Personalizado */
+.pin-neon { vertical-align: middle; margin-right: 6px; margin-bottom: 2px; filter: drop-shadow(0 0 4px #ff0055) drop-shadow(0 0 8px #ff0055); }
+
+/* Botón Mapa dentro de tarjeta */
+.btn-mapa { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 8px 14px; background: transparent; color: #39ff14; border: 1px solid #39ff14; border-radius: 5px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 8px rgba(57, 255, 20, 0.15); }
+.btn-mapa:active { background: rgba(57, 255, 20, 0.2); }
+
+/* Ventana Modal */
+.gmaps-modal { display: none; position: fixed; top: 5%; left: 5%; width: 90%; height: 85%; background: #111; z-index: 9999; border-radius: 8px; border: 1px solid #39ff14; box-shadow: 0 0 25px rgba(57, 255, 20, 0.2); flex-direction: column; }
+.gmaps-header { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #1a1a1a; border-bottom: 1px solid #39ff14; border-radius: 8px 8px 0 0; }
+.gmaps-title { color: #39ff14; font-size: 14px; margin: 0; font-weight: bold; }
+.gmaps-close { background: #ff0055; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 0 8px rgba(255, 0, 85, 0.5); }
+.gmaps-iframe { flex: 1; width: 100%; border: none; border-radius: 0 0 8px 8px; background: #fff; }

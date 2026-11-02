@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMexMapp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>NEOMEXMAP</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Ingresa CP o Colonia...">
+                <button id="searchBtn">Buscar</button>
+            </div>
+            
+            <div class="controls-container">
+                <div class="filter-row">
+                    <button class="btn-neon-outline filter-btn" data-mun="ecatepec">Ecatepec</button>
+                    <button class="btn-neon-outline filter-btn" data-mun="acolman">Acolman</button>
+                    <button class="btn-neon-outline filter-btn" data-mun="coacalco">Coacalco</button>
+                </div>
+                <div class="list-row">
+                    <button class="btn-neon-solid list-btn" id="btnListCP">Código Postal</button>
+                    <button class="btn-neon-solid list-btn" id="btnListCol">Colonias</button>
+                </div>
+            </div>
+        </header>
+        
+        <div id="results" class="results-container">
+            <p style="color: #888; text-align: center; margin-top: 30px;">Iniciando sistema...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
